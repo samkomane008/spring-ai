@@ -30,3 +30,21 @@ Concise extract of [CONTRIBUTING.md](CONTRIBUTING.md), which remains the referen
 - Body wrapped at ~72 characters, followed by `Fixes #123`/`Closes #123` (or `See #123`), then a `Signed-off-by: Name <email>` trailer (DCO, use `git commit -s`).
 - Enclose annotations in backticks in commit messages to avoid mentioning GitHub users.
 - PR titles feed the changelog: short, descriptive, types or file names in backticks; reference related issues in the description, not the title.
+
+## Git author identity for owner-authorized coding agents
+
+Before any Codex, ChatGPT cloud or other agent performs `git commit` on behalf
+of this repository owner, set the checkout's local Git identity:
+
+```bash
+git config --local user.name "Samuel Komane"
+git config --local user.email "159257666+samkomane008@users.noreply.github.com"
+git var GIT_AUTHOR_IDENT
+git var GIT_COMMITTER_IDENT
+```
+
+This links eligible owner-authored commits to [samkomane008](https://github.com/samkomane008).
+Do not automatically add AI-assistant `Co-authored-by` trailers.
+Preserve actual authorship for outside contributors and Dependabot.
+Git author settings cannot override a hosted GitHub App actor or web-flow merge
+committer. Never rewrite existing Git history or bypass CI to alter attribution.
